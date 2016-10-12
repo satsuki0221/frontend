@@ -25,9 +25,10 @@ gulp.task('browserSync', function() {
 	browserSync.init({
 		files: [
 			'./public/**/*.html',
+			'./public/**/*.php',
 			'./public/**/*.css',
-			'./public/js/**/*.js',
-			'./public/**/*.php'
+			'./public/js/**/*',
+			'./public/img/**/*'
 		],
 		proxy: 'http://mylocal.com/frontend/public/',
 	});
