@@ -4,6 +4,7 @@ var compass     = require('gulp-compass');
 var browserSync = require('browser-sync').create();
 var babel       = require("gulp-babel");
 var plumber     = require('gulp-plumber');
+var imagemin    = require("gulp-imagemin");
 
 gulp.task('default', function(){
 	gulp.watch('./public/sass/**/*.scss', ["compass"]);
@@ -11,6 +12,11 @@ gulp.task('default', function(){
 	gulp.run('browserSync');
 });
 
+gulp.task('imagemin', function(){
+	gulp.src(["./public/original_img/**/*.jpg" , "./public/original_img/**/*.png"])
+		.pipe(imagemin())
+		.pipe(gulp.dest("./public/img/"));
+});
 
 gulp.task("js", function() {
 	gulp.src("./public/es6/**/*.js")
@@ -27,10 +33,11 @@ gulp.task('browserSync', function() {
 			'./public/**/*.html',
 			'./public/**/*.php',
 			'./public/**/*.css',
-			'./public/js/**/*',
-			'./public/img/**/*'
+			'./public/**/*.js',
+			//'./public/img/**/*'
 		],
 		proxy: 'http://mylocal.com/frontend/public/',
+		port : 9999
 	});
 });
 
